@@ -1,0 +1,178 @@
+---
+import { leadership } from "../data/site";
+import SectionHeader from "./SectionHeader.astro";
+
+const f = leadership.feature;
+---
+
+<section class="section" id="leadership">
+  <div class="container">
+    <SectionHeader index="04" label="leadership" title="Leadership & community" />
+
+    <article class="card glow feature reveal">
+      <div class="head">
+        <div>
+          <p class="mono kicker">{f.dates}</p>
+          <h3>{f.org}</h3>
+          <p class="role">{f.role}</p>
+        </div>
+      </div>
+      <p class="desc">{f.description}</p>
+      <ul class="stats">
+        {f.stats.map((s) => (
+          <li>
+            <span class="v">{s.value}</span>
+            <span class="l mono">{s.label}</span>
+          </li>
+        ))}
+      </ul>
+      <ul class="bullets">
+        {f.bullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </article>
+
+    <div class="roles">
+      {leadership.roles.map((r, i) => (
+        <article class="card glow role-card reveal" style={`--d:${(i % 3) * 60}ms`}>
+          <p class="mono kicker">{r.dates}</p>
+          <h4>{r.org}</h4>
+          <p class="r">{r.role}</p>
+          <p class="t">{r.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="mentor reveal">
+      <span class="mono lbl">mentorship →</span>
+      <div class="tags">
+        {leadership.mentorship.map((m) => <span class="tag">{m}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    overflow: hidden;
+    background:
+      radial-gradient(700px 300px at 100% 0%, rgba(0, 39, 76, 0.7), transparent 70%),
+      var(--bg-card);
+    border-color: var(--border-strong);
+  }
+  .feature::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(var(--maize), var(--blue));
+  }
+  .kicker {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    margin-bottom: 0.4rem;
+  }
+  .feature h3 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  .role {
+    color: var(--maize);
+    margin-top: 0.3rem;
+    font-weight: 500;
+  }
+  .desc {
+    color: var(--text-dim);
+    margin-top: 1rem;
+    max-width: 62ch;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin: 1.75rem 0;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .stats li {
+    background: rgba(8, 9, 12, 0.6);
+    padding: 1rem 1.1rem;
+  }
+  .v {
+    display: block;
+    font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .l {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    margin-top: 0.2rem;
+  }
+  .bullets {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .bullets li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .bullets li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--maize);
+  }
+  .roles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+  .role-card {
+    padding: 1.25rem;
+  }
+  .role-card h4 {
+    font-size: 1rem;
+  }
+  .r {
+    color: var(--blue);
+    font-size: 0.88rem;
+    margin-top: 0.15rem;
+  }
+  .t {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    margin-top: 0.7rem;
+  }
+  .mentor {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 2rem;
+  }
+  .lbl {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+  @media (max-width: 900px) {
+    .roles {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .roles {
+      grid-template-columns: 1fr;
+    }
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

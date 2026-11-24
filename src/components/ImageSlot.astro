@@ -1,0 +1,60 @@
+---
+// Shows the project image if provided, otherwise a styled placeholder.
+interface Props {
+  src: string | null;
+  alt: string;
+  seed?: number;
+}
+const { src, alt, seed = 0 } = Astro.props;
+const hues = [
+  ["#00274c", "#ffcb05"],
+  ["#0d1b3d", "#6b9bff"],
+  ["#1a1633", "#ffcb05"],
+  ["#0b2236", "#6b9bff"],
+];
+const [a, b] = hues[seed % hues.length];
+---
+
+{src ? (
+  <img class="img" src={src} alt={alt} loading="lazy" decoding="async" />
+) : (
+  <div class="ph" style={`--a:${a};--b:${b}`} role="img" aria-label={`${alt} (image coming soon)`}>
+    <span class="mono">// add image → public/projects/</span>
+  </div>
+)}
+
+<style>
+  .img,
+  .ph {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .ph {
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--b) 22%, transparent), transparent 55%),
+      linear-gradient(135deg, var(--a), #0b0d12 75%);
+  }
+  .ph::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(circle at center, #000, transparent 80%);
+  }
+  .ph span {
+    position: relative;
+    z-index: 1;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.45);
+  }
+</style>

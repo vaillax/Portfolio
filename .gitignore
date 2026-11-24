@@ -1,0 +1,11 @@
+# dependencies & build output
+node_modules/
+dist/
+.astro/
+
+# OS
+.DS_Store
+
+# Never commit PDFs — the ONLY exception is the public resume.
+*.[pP][dD][fF]
+!/public/resume.pdf

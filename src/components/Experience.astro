@@ -1,0 +1,156 @@
+---
+import { experience } from "../data/site";
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section class="section" id="experience">
+  <div class="container">
+    <SectionHeader index="02" label="experience" title="Where I've worked" />
+
+    <ol class="timeline">
+      {experience.map((job) => (
+        <li class:list={["item reveal", { hl: job.highlight }]}>
+          <div class="when mono">
+            <span>{job.dates}</span>
+            <span class="loc">{job.location}</span>
+          </div>
+          <div class="body">
+            <h3>
+              {job.company}
+              {job.highlight && <span class="badge mono">featured</span>}
+            </h3>
+            <p class="role">{job.role}</p>
+            <ul class="bullets">
+              {job.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+            {job.tags && (
+              <div class="tags">
+                {job.tags.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            )}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  .item {
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 2rem;
+    position: relative;
+    padding: 0 0 2.75rem;
+  }
+  .item:last-child {
+    padding-bottom: 0;
+  }
+  /* rail */
+  .body {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 1px solid var(--border);
+  }
+  .item:last-child .body {
+    border-left-color: transparent;
+    background: linear-gradient(var(--border), transparent) left top / 1px 100% no-repeat;
+  }
+  .body::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 0.45rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--text-faint);
+  }
+  .hl .body::before {
+    border-color: var(--maize);
+    background: var(--maize);
+    box-shadow: 0 0 0 4px var(--maize-soft);
+  }
+  .when {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    padding-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .loc {
+    color: var(--text-faint);
+  }
+  h3 {
+    font-size: 1.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .badge {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    color: var(--maize);
+    background: var(--maize-soft);
+  }
+  .role {
+    color: var(--blue);
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+  }
+  .bullets {
+    margin: 0.9rem 0 1rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .bullets li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+  }
+  .bullets li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--maize);
+  }
+  @media (max-width: 720px) {
+    .item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+      padding-left: 1.25rem;
+      border-left: 1px solid var(--border);
+    }
+    .item.hl {
+      border-left-color: var(--maize);
+    }
+    .when {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.25rem 0.75rem;
+      padding: 0;
+    }
+    .body,
+    .item:last-child .body {
+      padding-left: 0;
+      border-left: 0;
+      background: none;
+    }
+    .body::before {
+      display: none;
+    }
+  }
+</style>

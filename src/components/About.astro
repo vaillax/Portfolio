@@ -1,0 +1,156 @@
+---
+import { about } from "../data/site";
+import SectionHeader from "./SectionHeader.astro";
+---
+
+<section class="section" id="about">
+  <div class="container">
+    <SectionHeader index="01" label="about" title="About me" />
+
+    <div class="grid">
+      <div class="bio">
+        {about.paragraphs.map((p, i) => <p class="reveal" style={`--d:${i * 60}ms`}>{p}</p>)}
+
+        <ul class="stats reveal">
+          {about.stats.map((s) => (
+            <li>
+              <span class="v">{s.value}</span>
+              <span class="l">{s.label}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside class="side">
+        <div class="card edu reveal">
+          <p class="mono label">education</p>
+          <h3>{about.education.school}</h3>
+          <p class="deg">{about.education.degree}</p>
+          <p class="mono dates">{about.education.dates}</p>
+          <ul class="course mono">
+            {about.education.coursework.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+
+        <div class="card skills reveal" style="--d:80ms">
+          {about.skills.map((g) => (
+            <div class="group">
+              <p class="mono label">{g.group.toLowerCase()}</p>
+              <div class="tags">
+                {g.items.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+      </aside>
+    </div>
+
+    <ul class="honors reveal">
+      {about.honors.map((h) => <li><span class="star" aria-hidden="true">✦</span>{h}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+  .bio p {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    margin-bottom: 1.15rem;
+  }
+  .bio p:first-child {
+    color: var(--text);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .stats .v {
+    display: block;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--maize);
+  }
+  .stats .l {
+    display: block;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: var(--text-faint);
+    margin-top: 0.25rem;
+  }
+  .side {
+    display: grid;
+    gap: 1rem;
+  }
+  .card {
+    padding: 1.4rem;
+  }
+  .label {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    margin-bottom: 0.6rem;
+  }
+  .edu h3 {
+    font-size: 1.02rem;
+  }
+  .deg {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
+  }
+  .dates {
+    color: var(--maize);
+    font-size: 0.78rem;
+    margin-top: 0.35rem;
+  }
+  .course {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-strong);
+    font-size: 0.74rem;
+    color: var(--text-dim);
+    display: grid;
+    gap: 0.3rem;
+  }
+  .group + .group {
+    margin-top: 1.15rem;
+  }
+  .honors {
+    margin-top: clamp(2.5rem, 6vw, 3.5rem);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 2rem;
+    font-size: 0.88rem;
+    color: var(--text-dim);
+  }
+  .honors li {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .star {
+    color: var(--maize);
+    font-size: 0.75rem;
+    line-height: 1.9;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 480px) {
+    .stats {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+  }
+</style>
