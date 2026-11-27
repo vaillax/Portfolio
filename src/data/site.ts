@@ -164,7 +164,7 @@ export const projects: Project[] = [
     description:
       "The club's site for events, RSVPs, and QR-code attendance check-in, built to replace a Google Form. I made the product, architecture, and security decisions and built it with AI coding tools: umich-only Google sign-in, Postgres row-level security, and 400+ automated tests in CI.",
     tags: ["Next.js 16", "Supabase", "Vercel", "PWA / Web Push", "Playwright", "GitHub Actions"],
-    image: null, // TODO: e.g. "/projects/roblox-at-um.png"
+    image: "/projects/roblox-at-um.png",
     links: [{ label: "Live site", href: "https://robloxatum.vercel.app" }],
     featured: true,
   },
