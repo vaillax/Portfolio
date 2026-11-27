@@ -35,7 +35,7 @@ export const about = {
   paragraphs: [
     "I'm a junior at the University of Michigan studying Computer Science Engineering. I like building technology that makes systems more accessible, efficient, and human-centered.",
     "Lately that's meant AI applied to real problems: an autonomous agent that automates fundraising prep for gift officers at the Ross School of Business, the behavioral ontology behind TrubAI's small language model, and an accessible resource hub for Out in STEM that serves 300+ students.",
-    "Outside of class I co-founded Roblox at UM, coach high schoolers in Python and C++, and mentor Detroit students through Detroit Promise, GEAR UP, and SHPE.",
+    "Outside of class I cofounded Roblox at UM, coach high schoolers in Python and C++, and mentor Detroit students through Detroit Promise, GEAR UP, and SHPE.",
   ],
   education: {
     school: "University of Michigan, College of Engineering",
@@ -251,7 +251,7 @@ export const leadership = {
     role: "Cofounder & VP of Strategy",
     dates: "Oct 2025 – Present",
     description:
-      "Cofounded U-M's Roblox club with four other students, then built it into an active community of student game developers.",
+      "Cofounded U-M's Roblox club with three other students, then built it into an active community of student game developers.",
     stats: [
       { value: "100+", label: "members in first 3 weeks" },
       { value: "24h", label: "Game Jam with Roblox" },
