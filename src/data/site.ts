@@ -159,6 +159,16 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Roblox at UM Club Website",
+    kicker: "Roblox at UM · 2026",
+    description:
+      "The club's site for events, RSVPs, and QR-code attendance check-in, built to replace a Google Form. I made the product, architecture, and security decisions and built it with AI coding tools: umich-only Google sign-in, Postgres row-level security, and 400+ automated tests in CI.",
+    tags: ["Next.js 16", "Supabase", "Vercel", "PWA / Web Push", "Playwright", "GitHub Actions"],
+    image: null, // TODO: e.g. "/projects/roblox-at-um.png"
+    links: [{ label: "Live site", href: "https://robloxatum.vercel.app" }],
+    featured: true,
+  },
+  {
     title: "AI Admin Agent for Gift Officers",
     kicker: "Ross School of Business · 2026",
     description:
@@ -238,10 +248,10 @@ export const projects: Project[] = [
 export const leadership = {
   feature: {
     org: "Roblox at UM",
-    role: "Co-Founder · Head of Strategy & Communications",
-    dates: "Sep 2025 – Present",
+    role: "Cofounder & VP of Strategy",
+    dates: "Oct 2025 – Present",
     description:
-      "Co-founded U-M's Roblox club with four other students, then built it into an active community of student game developers.",
+      "Cofounded U-M's Roblox club with four other students, then built it into an active community of student game developers.",
     stats: [
       { value: "100+", label: "members in first 3 weeks" },
       { value: "24h", label: "Game Jam with Roblox" },
