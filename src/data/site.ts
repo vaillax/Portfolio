@@ -9,37 +9,34 @@ export const profile = {
   handle: "alexander",
   tagline: "I build AI systems that take the busywork off people's plates.",
   subtitle:
-    "CS (BSE) junior at the University of Michigan working where AI, accessibility, and real-world workflows meet.",
+    "Computer Science (B.S.E.) junior at the University of Michigan working where AI, accessibility, and real-world workflows meet.",
   status: "Open to SWE internships",
   location: "Ann Arbor, MI",
   graduation: "May 2028",
   resume: "/resume.pdf",
 };
 
-// TODO: replace placeholders. Email + LinkedIn were pre-filled from your resume.
 export const links = {
-  email: "vailla@umich.edu", // TODO: confirm preferred contact email
+  email: "vailla@umich.edu",
   github: "https://github.com/vaillax",
-  linkedin: "https://www.linkedin.com/in/alexander-villagomez", // TODO: confirm
+  linkedin: "https://www.linkedin.com/in/alexander-villagomez",
 };
 
 export const nav = [
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "About", href: "#about" },
   { label: "Leadership", href: "#leadership" },
   { label: "Contact", href: "#contact" },
 ];
 
 export const about = {
   paragraphs: [
-    "I'm a junior at the University of Michigan studying Computer Science Engineering. I like building technology that makes systems more accessible, efficient, and human-centered.",
-    "Lately that's meant AI applied to real problems: an autonomous agent that automates fundraising prep for gift officers at the Ross School of Business, the behavioral ontology behind TrubAI's small language model, and an accessible resource hub for Out in STEM that serves 300+ students.",
-    "Outside of class I cofounded Roblox at UM, coach high schoolers in Python and C++, and mentor Detroit students through Detroit Promise, GEAR UP, and SHPE.",
+    "I'm a junior at the University of Michigan studying Computer Science (B.S.E.). I like building technology that makes systems more accessible, efficient, and human-centered.",
   ],
   education: {
     school: "University of Michigan, College of Engineering",
-    degree: "B.S.E. Computer Science",
+    degree: "Computer Science (B.S.E.)",
     dates: "Aug 2024 – May 2028",
     coursework: [
       "EECS 280 · Programming & Data Structures",
@@ -50,18 +47,9 @@ export const about = {
       "ENTR 475/485 · Mcity TechLab",
     ],
   },
-  stats: [
-    { value: "20%", label: "admin time cut for Ross gift officers" },
-    { value: "4,100+", label: "followers grown for Roblox at UM" },
-    { value: "700+", label: "students in the Joy of Coding program" },
-  ],
   skills: [
     { group: "Languages", items: ["C++", "Python", "JavaScript", "HTML/CSS", "R", "Lua"] },
     { group: "Tools", items: ["n8n", "Maizey", "GitHub", "Roblox Studio", "AWS Cloud9", "Xcode", "Replit"] },
-    {
-      group: "Focus",
-      items: ["AI workflow automation", "Ontology engineering", "Accessibility (WCAG/ADA)", "UX prototyping", "Technical writing"],
-    },
   ],
   honors: [
     "Hispanic Scholarship Fund Scholar (2026), 1 of 10,000 from 56,000+ applicants",
@@ -76,6 +64,8 @@ export type Job = {
   location: string;
   dates: string;
   highlight?: boolean;
+  /** Slug of a project card (see `projects`) that covers this role in detail. */
+  project?: string;
   tags?: string[];
   bullets: string[];
 };
@@ -88,10 +78,9 @@ export const experience: Job[] = [
     dates: "Jan 2026 – Dec 2026",
     highlight: true,
     tags: ["Ontology", "Knowledge Representation", "SLM"],
+    project: "trubai-ontology",
     bullets: [
       "Built the foundational ontology for the behavioral decision-making layer of TrubAI's small language model.",
-      "Designed taxonomies and structured logic that model how people make choices in urban systems, why they behave the way they do, and which interventions change outcomes.",
-      "Turned behavioral-science research into machine-readable semantic relationships that support the model's reasoning.",
       "Started through the Mcity TechLab course and stayed on as an intern.",
     ],
   },
@@ -102,10 +91,9 @@ export const experience: Job[] = [
     dates: "May 2026 – Aug 2026",
     highlight: true,
     tags: ["n8n", "Maizey", "AI Agents"],
+    project: "ross-ai-agent",
     bullets: [
-      "Designed and built an AI administrative agent from autonomous n8n workflows and Maizey. It generates contact reports, event briefs, donor follow-up emails, and research briefs for major gift officers.",
-      "Cut the time gift officers spent on admin and prep work by 20% once they adopted the workflows.",
-      "Synthesized large volumes of public and institutional data into concise donor research briefs.",
+      "Designed and built an AI administrative agent from autonomous n8n workflows and Maizey.",
       "Documented the approach to guide broader AI adoption across the School.",
     ],
   },
@@ -149,8 +137,15 @@ export type Project = {
   kicker: string;
   description: string;
   tags: string[];
-  /** Path under /public, e.g. "/projects/jarvis.png". Leave null for a styled placeholder. */
+  /** Anchor id for the card, so an Experience entry can link to it. */
+  slug?: string;
+  /**
+   * Path under /public to a 1200×675 .webp, e.g. "/projects/jarvis.webp". A 640px-wide copy
+   * named "jarvis-640.webp" must sit beside it. Leave null for a styled placeholder.
+   */
   image: string | null;
+  /** Describes what the screenshot shows, for screen readers. */
+  imageAlt?: string;
   links?: { label: string; href: string }[];
   featured?: boolean;
   /** Set true to keep the project in this file but not show it on the site. */
@@ -164,7 +159,10 @@ export const projects: Project[] = [
     description:
       "The club's site for events, RSVPs, and QR-code attendance check-in, built to replace a Google Form. I made the product, architecture, and security decisions and built it with AI coding tools: umich-only Google sign-in, Postgres row-level security, and 400+ automated tests in CI.",
     tags: ["Next.js 16", "Supabase", "Vercel", "PWA / Web Push", "Playwright", "GitHub Actions"],
-    image: "/projects/roblox-at-um.png",
+    slug: "roblox-at-um",
+    image: "/projects/roblox-at-um.webp",
+    imageAlt:
+      "Home page of the Roblox at UM club website, with Join the club and View Events buttons above an Upcoming Events list.",
     links: [{ label: "Live site", href: "https://robloxatum.vercel.app" }],
     featured: true,
   },
@@ -174,7 +172,10 @@ export const projects: Project[] = [
     description:
       "An autonomous agent built from n8n workflows and Maizey, U-M's AI platform. Gift officers hand it the prep work: it drafts contact reports, event briefs, donor follow-up emails, and research briefs from public and institutional data. After adoption it cut their admin time by 20%.",
     tags: ["n8n", "Maizey", "LLM workflows", "Automation"],
-    image: "/projects/ross-ai-agent.png",
+    slug: "ross-ai-agent",
+    image: "/projects/ross-ai-agent.webp",
+    imageAlt:
+      "n8n workflow canvas: a Switch node routes each request to a Research, Interactions, Event Brief or Follow-up model, which then creates documents and sends email.",
     featured: true,
   },
   {
@@ -183,7 +184,10 @@ export const projects: Project[] = [
     description:
       "The knowledge layer behind TrubAI's small language model. It's a structured ontology and set of taxonomies that encode how people make decisions in urban systems, why they act the way they do, and which interventions are likely to change outcomes. It turns behavioral-science research into semantic relationships the model can reason over.",
     tags: ["Ontology engineering", "Knowledge graphs", "Behavioral science"],
-    image: "/projects/trubai-ontology.png",
+    slug: "trubai-ontology",
+    image: "/projects/trubai-ontology.webp",
+    imageAlt:
+      "TrubAI web app screen titled Locate the issue: an address form and analysis-area controls beside a street map of Detroit.",
     featured: true,
   },
   {

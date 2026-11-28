@@ -13,10 +13,22 @@ const hues = [
   ["#0b2236", "#6b9bff"],
 ];
 const [a, b] = hues[seed % hues.length];
+// Each .webp has a 640px-wide copy beside it for phones.
+const small = src && src.endsWith(".webp") ? src.replace(/\.webp$/, "-640.webp") : null;
 ---
 
 {src ? (
-  <img class="img" src={src} alt={alt} loading="lazy" decoding="async" />
+  <img
+    class="img"
+    src={src}
+    srcset={small ? `${small} 640w, ${src} 1200w` : undefined}
+    sizes={small ? "(max-width: 720px) 92vw, 520px" : undefined}
+    width="1200"
+    height="675"
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+  />
 ) : (
   <div class="ph" style={`--a:${a};--b:${b}`} role="img" aria-label={`${alt} (image coming soon)`}>
     <span class="mono">// add image → public/projects/</span>
@@ -27,6 +39,7 @@ const [a, b] = hues[seed % hues.length];
   .img,
   .ph {
     width: 100%;
+    height: auto;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 8px;
@@ -54,7 +67,7 @@ const [a, b] = hues[seed % hues.length];
   .ph span {
     position: relative;
     z-index: 1;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.45);
   }
 </style>

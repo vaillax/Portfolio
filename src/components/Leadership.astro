@@ -7,7 +7,7 @@ const f = leadership.feature;
 
 <section class="section" id="leadership">
   <div class="container">
-    <SectionHeader index="04" label="leadership" title="Leadership & community" />
+    <SectionHeader label="leadership" title="Leadership & community" />
 
     <article class="card glow feature reveal">
       <div class="head">
@@ -33,7 +33,7 @@ const f = leadership.feature;
 
     <div class="roles">
       {leadership.roles.map((r, i) => (
-        <article class="card glow role-card reveal" style={`--d:${(i % 3) * 60}ms`}>
+        <article class="card glow role-card reveal">
           <p class="mono kicker">{r.dates}</p>
           <h4>{r.org}</h4>
           <p class="r">{r.role}</p>
@@ -60,17 +60,8 @@ const f = leadership.feature;
       var(--bg-card);
     border-color: var(--border-strong);
   }
-  .feature::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(var(--maize), var(--blue));
-  }
   .kicker {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--text-faint);
     margin-bottom: 0.4rem;
   }
@@ -109,7 +100,7 @@ const f = leadership.feature;
   }
   .l {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--text-faint);
     margin-top: 0.2rem;
   }

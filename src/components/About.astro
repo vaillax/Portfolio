@@ -5,20 +5,22 @@ import SectionHeader from "./SectionHeader.astro";
 
 <section class="section" id="about">
   <div class="container">
-    <SectionHeader index="01" label="about" title="About me" />
+    <SectionHeader label="about" title="About me" />
 
     <div class="grid">
       <div class="bio">
-        {about.paragraphs.map((p, i) => <p class="reveal" style={`--d:${i * 60}ms`}>{p}</p>)}
+        {about.paragraphs.map((p) => <p class="reveal">{p}</p>)}
 
-        <ul class="stats reveal">
-          {about.stats.map((s) => (
-            <li>
-              <span class="v">{s.value}</span>
-              <span class="l">{s.label}</span>
-            </li>
+        <div class="skills reveal">
+          {about.skills.map((g) => (
+            <div class="group">
+              <p class="mono label">{g.group.toLowerCase()}</p>
+              <div class="tags">
+                {g.items.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       <aside class="side">
@@ -30,17 +32,6 @@ import SectionHeader from "./SectionHeader.astro";
           <ul class="course mono">
             {about.education.coursework.map((c) => <li>{c}</li>)}
           </ul>
-        </div>
-
-        <div class="card skills reveal" style="--d:80ms">
-          {about.skills.map((g) => (
-            <div class="group">
-              <p class="mono label">{g.group.toLowerCase()}</p>
-              <div class="tags">
-                {g.items.map((t) => <span class="tag">{t}</span>)}
-              </div>
-            </div>
-          ))}
         </div>
       </aside>
     </div>
@@ -58,45 +49,18 @@ import SectionHeader from "./SectionHeader.astro";
     gap: clamp(2rem, 5vw, 4rem);
     align-items: start;
   }
-  .bio p {
-    color: var(--text-dim);
-    font-size: 1.05rem;
-    margin-bottom: 1.15rem;
-  }
-  .bio p:first-child {
+  .bio > p {
     color: var(--text);
+    font-size: 1.05rem;
   }
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  .skills {
     margin-top: 2rem;
-    padding-top: 1.75rem;
-    border-top: 1px solid var(--border);
-  }
-  .stats .v {
-    display: block;
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    color: var(--maize);
-  }
-  .stats .l {
-    display: block;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    color: var(--text-faint);
-    margin-top: 0.25rem;
-  }
-  .side {
-    display: grid;
-    gap: 1rem;
   }
   .card {
     padding: 1.4rem;
   }
   .label {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--text-faint);
     margin-bottom: 0.6rem;
   }
@@ -117,7 +81,7 @@ import SectionHeader from "./SectionHeader.astro";
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px dashed var(--border-strong);
-    font-size: 0.74rem;
+    font-size: 0.75rem;
     color: var(--text-dim);
     display: grid;
     gap: 0.3rem;
@@ -145,12 +109,6 @@ import SectionHeader from "./SectionHeader.astro";
   @media (max-width: 860px) {
     .grid {
       grid-template-columns: 1fr;
-    }
-  }
-  @media (max-width: 480px) {
-    .stats {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
     }
   }
 </style>

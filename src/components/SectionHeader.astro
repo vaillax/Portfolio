@@ -1,14 +1,13 @@
 ---
 interface Props {
-  index: string;
   label: string;
   title: string;
 }
-const { index, label, title } = Astro.props;
+const { label, title } = Astro.props;
 ---
 
 <header class="sh reveal">
-  <p class="mono kicker"><span class="idx">{index}</span> <span class="slash">//</span> {label}</p>
+  <p class="mono kicker"><span class="slash">//</span> {label}</p>
   <h2>{title}</h2>
 </header>
 
@@ -21,9 +20,6 @@ const { index, label, title } = Astro.props;
     color: var(--text-faint);
     letter-spacing: 0.02em;
     margin-bottom: 0.75rem;
-  }
-  .idx {
-    color: var(--maize);
   }
   .slash {
     color: var(--blue);

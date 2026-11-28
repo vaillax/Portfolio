@@ -8,20 +8,22 @@ import { nav, profile } from "../data/site";
       <span class="prompt">~/</span>{profile.handle}<span class="caret">_</span>
     </a>
 
+    <nav id="menu" aria-label="Primary">
+      <ul>
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} class="mono">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Outside the menu so it stays one tap away on phones. -->
+    <a href={profile.resume} class="mono resume" target="_blank" rel="noopener">Resume</a>
+
     <button class="toggle" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
       <span></span><span></span>
     </button>
-
-    <nav id="menu" aria-label="Primary">
-      <ul>
-        {nav.map((item, i) => (
-          <li>
-            <a href={item.href} class="mono"><span class="n">0{i + 1}.</span>{item.label}</a>
-          </li>
-        ))}
-        <li><a href={profile.resume} class="mono resume" target="_blank" rel="noopener">Resume</a></li>
-      </ul>
-    </nav>
   </div>
 </header>
 
@@ -38,7 +40,7 @@ import { nav, profile } from "../data/site";
       border-color 0.3s var(--ease);
   }
   .nav.scrolled {
-    background: rgba(8, 9, 12, 0.78);
+    background: rgba(8, 9, 12, 0.95);
     backdrop-filter: saturate(160%) blur(12px);
     -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-color: var(--border);
@@ -46,7 +48,7 @@ import { nav, profile } from "../data/site";
   .inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 1.75rem;
     height: 4rem;
   }
   .logo {
@@ -65,6 +67,9 @@ import { nav, profile } from "../data/site";
       opacity: 0;
     }
   }
+  nav {
+    margin-left: auto;
+  }
   nav ul {
     display: flex;
     align-items: center;
@@ -78,19 +83,18 @@ import { nav, profile } from "../data/site";
   nav a:hover {
     color: var(--text);
   }
-  .n {
-    color: var(--maize);
-    margin-right: 0.35rem;
-  }
   .resume {
+    position: relative;
+    z-index: 2;
     padding: 0.45rem 0.85rem;
     border: 1px solid var(--maize);
     border-radius: 6px;
+    font-size: 0.8rem;
     color: var(--maize);
+    transition: background 0.2s;
   }
   .resume:hover {
     background: var(--maize-soft);
-    color: var(--maize);
   }
   .toggle {
     display: none;
@@ -107,13 +111,20 @@ import { nav, profile } from "../data/site";
   }
 
   @media (max-width: 760px) {
+    .inner {
+      gap: 0.5rem;
+    }
+    .resume {
+      margin-left: auto;
+      padding: 0.55rem 0.8rem;
+    }
     .toggle {
       display: grid;
       gap: 6px;
       place-content: center;
-      width: 40px;
-      height: 40px;
-      margin-right: -8px;
+      width: 44px;
+      height: 44px;
+      margin-right: -10px;
       background: none;
       border: 0;
       cursor: pointer;
@@ -137,6 +148,7 @@ import { nav, profile } from "../data/site";
     nav {
       position: fixed;
       inset: 0;
+      margin: 0;
       background: rgba(8, 9, 12, 0.97);
       backdrop-filter: blur(10px);
       display: grid;

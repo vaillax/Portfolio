@@ -11,22 +11,28 @@ const others = visible.filter((p) => !p.featured);
 
 <section class="section" id="projects">
   <div class="container">
-    <SectionHeader index="03" label="projects" title="Things I've built" />
+    <SectionHeader label="projects" title="Things I've built" />
 
     <div class="featured">
       {featured.map((p, i) => (
-        <article class="card glow feat reveal" style={`--d:${(i % 2) * 80}ms`}>
-          {p.image && <ImageSlot src={p.image} alt={p.title} seed={i} />}
+        <article id={p.slug} class="card glow feat reveal">
+          {p.image && <ImageSlot src={p.image} alt={p.imageAlt ?? p.title} seed={i} />}
           <div class="content">
             <p class="mono kicker">{p.kicker}</p>
-            <h3>{p.title}</h3>
+            <h3>
+              {p.links?.[0] ? (
+                <a class="stretch" href={p.links[0].href} target="_blank" rel="noopener">{p.title}</a>
+              ) : (
+                p.title
+              )}
+            </h3>
             <p class="desc">{p.description}</p>
             <div class="foot">
               <div class="tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</div>
               {p.links && p.links.length > 0 && (
                 <div class="links">
                   {p.links.map((l) => (
-                    <a href={l.href} class="mono" target="_blank" rel="noopener">
+                    <a href={l.href} class="mono" target="_blank" rel="noopener" aria-label={`${l.label}: ${p.title}`}>
                       {l.label} <Icon name="external" />
                     </a>
                   ))}
@@ -41,7 +47,7 @@ const others = visible.filter((p) => !p.featured);
     <h3 class="mono more reveal">other work</h3>
     <div class="others">
       {others.map((p, i) => (
-        <article class="card glow small reveal" style={`--d:${(i % 4) * 60}ms`}>
+        <article class="card glow small reveal">
           <p class="mono kicker">{p.kicker}</p>
           <h4>{p.title}</h4>
           <p class="desc">{p.description}</p>
@@ -49,7 +55,7 @@ const others = visible.filter((p) => !p.featured);
           {p.links && p.links.length > 0 && (
             <div class="links small-links">
               {p.links.map((l) => (
-                <a href={l.href} class="mono" target="_blank" rel="noopener">
+                <a href={l.href} class="mono" target="_blank" rel="noopener" aria-label={`${l.label}: ${p.title}`}>
                   {l.label} <Icon name="external" />
                 </a>
               ))}
@@ -101,8 +107,21 @@ const others = visible.filter((p) => !p.featured);
     flex-direction: column;
     flex: 1;
   }
+  /* Whole card opens the project's main link; the title is the one real link. */
+  .stretch::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  .stretch {
+    transition: color 0.2s;
+  }
+  .stretch:hover {
+    color: var(--maize);
+  }
   .kicker {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--maize);
     margin-bottom: 0.45rem;
   }
@@ -123,19 +142,28 @@ const others = visible.filter((p) => !p.featured);
     gap: 0.75rem;
   }
   .links {
+    position: relative;
+    z-index: 1;
     display: flex;
-    gap: 1rem;
+    gap: 0.6rem;
   }
   .links a {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.35rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    background: var(--bg-elev);
     font-size: 0.78rem;
-    color: var(--text-dim);
-    transition: color 0.2s;
+    color: var(--text);
+    transition:
+      color 0.2s,
+      border-color 0.2s;
   }
   .links a:hover {
     color: var(--maize);
+    border-color: var(--maize);
   }
   .links :global(svg) {
     width: 14px;
@@ -157,7 +185,7 @@ const others = visible.filter((p) => !p.featured);
   }
   .others {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
   .small {
@@ -171,11 +199,6 @@ const others = visible.filter((p) => !p.featured);
   .small .desc {
     font-size: 0.86rem;
     flex: 1;
-  }
-  @media (max-width: 960px) {
-    .others {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
   @media (max-width: 720px) {
     .featured,
