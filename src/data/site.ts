@@ -85,13 +85,13 @@ export const experience: Job[] = [
     company: "TrubAI",
     role: "Intern · Behavioral Ontology",
     location: "Ann Arbor, MI",
-    dates: "Jan 2026 – Present",
+    dates: "Jan 2026 – Dec 2026",
     highlight: true,
     tags: ["Ontology", "Knowledge Representation", "SLM"],
     bullets: [
-      "Build the foundational ontology for the behavioral decision-making layer of TrubAI's small language model.",
-      "Design taxonomies and structured logic that model how people make choices in urban systems, why they behave the way they do, and which interventions change outcomes.",
-      "Turn behavioral-science research into machine-readable semantic relationships that support the model's reasoning.",
+      "Built the foundational ontology for the behavioral decision-making layer of TrubAI's small language model.",
+      "Designed taxonomies and structured logic that model how people make choices in urban systems, why they behave the way they do, and which interventions change outcomes.",
+      "Turned behavioral-science research into machine-readable semantic relationships that support the model's reasoning.",
       "Started through the Mcity TechLab course and stayed on as an intern.",
     ],
   },
@@ -174,16 +174,16 @@ export const projects: Project[] = [
     description:
       "An autonomous agent built from n8n workflows and Maizey, U-M's AI platform. Gift officers hand it the prep work: it drafts contact reports, event briefs, donor follow-up emails, and research briefs from public and institutional data. After adoption it cut their admin time by 20%.",
     tags: ["n8n", "Maizey", "LLM workflows", "Automation"],
-    image: null, // TODO: e.g. "/projects/ross-agent.png" (workflow diagram works great)
+    image: "/projects/ross-ai-agent.png",
     featured: true,
   },
   {
     title: "Behavioral Ontology for an SLM",
-    kicker: "TrubAI · 2026 – Present",
+    kicker: "TrubAI · 2026",
     description:
       "The knowledge layer behind TrubAI's small language model. It's a structured ontology and set of taxonomies that encode how people make decisions in urban systems, why they act the way they do, and which interventions are likely to change outcomes. It turns behavioral-science research into semantic relationships the model can reason over.",
     tags: ["Ontology engineering", "Knowledge graphs", "Behavioral science"],
-    image: null, // TODO: e.g. "/projects/trubai-ontology.png"
+    image: "/projects/trubai-ontology.png",
     featured: true,
   },
   {
