@@ -81,7 +81,7 @@ export const experience: Job[] = [
     project: "trubai-ontology",
     bullets: [
       "Built the foundational ontology for the behavioral decision-making layer of TrubAI's small language model.",
-      "Started through the Mcity TechLab course and stayed on as an intern.",
+      "Designed taxonomies and structured logic that model how people make choices in urban systems, why they behave the way they do, and which interventions change outcomes.",
     ],
   },
   {
@@ -94,7 +94,7 @@ export const experience: Job[] = [
     project: "ross-ai-agent",
     bullets: [
       "Designed and built an AI administrative agent from autonomous n8n workflows and Maizey.",
-      "Documented the approach to guide broader AI adoption across the School.",
+      "Cut the time gift officers spent on admin and prep work by 20% once they adopted the workflows.",
     ],
   },
   {
