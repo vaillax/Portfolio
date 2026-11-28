@@ -22,38 +22,13 @@ const description = `${profile.tagline} ${profile.subtitle}`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta name="twitter:card" content="summary" />
-    <script is:inline>document.documentElement.classList.remove("no-js");</script>
+    <script is:inline src="/scripts/no-js.js"></script>
   </head>
   <body>
     <a href="#main" class="skip">Skip to content</a>
     <slot />
 
-    <script>
-      // Scroll reveal
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              io.unobserve(e.target);
-            }
-          }
-        },
-        { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
-      );
-      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-
-      // Cursor-following glow on cards (pointer devices only)
-      if (window.matchMedia("(hover: hover)").matches) {
-        document.querySelectorAll<HTMLElement>(".card.glow").forEach((card) => {
-          card.addEventListener("pointermove", (ev) => {
-            const r = card.getBoundingClientRect();
-            card.style.setProperty("--mx", `${ev.clientX - r.left}px`);
-            card.style.setProperty("--my", `${ev.clientY - r.top}px`);
-          });
-        });
-      }
-    </script>
+    <script is:inline type="module" src="/scripts/reveal.js"></script>
 
     <style>
       .skip {
