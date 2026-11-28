@@ -221,7 +221,10 @@ export const projects: Project[] = [
       "A WCAG-aligned resource site for 300+ students. Its categorized navigation and banner-based routing cut the time to find key resources by 30% and raised resource page visits by 45%.",
     tags: ["HTML", "CSS", "JavaScript", "WCAG"],
     image: null,
-    links: [{ label: "Code", href: "https://github.com/vaillax/ostem-resourcehub" }],
+    links: [
+      { label: "Live site", href: "https://ostem-resourcehub.com/" },
+      { label: "Code", href: "https://github.com/vaillax/ostem-resourcehub" },
+    ],
   },
   {
     title: "A2RL Autonomous Racing",
